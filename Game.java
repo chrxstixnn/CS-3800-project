@@ -53,7 +53,9 @@ public class Game {
 			public void run() {
 				try {
 					Game window = new Game();
+					Game window2 = new Game();
 					window.frame.setVisible(true);
+					window2.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -63,13 +65,31 @@ public class Game {
 	}
 	
 	
+	public static boolean draw(int[] results) {
+		
+		boolean draw = true;
+		
+		for(int i = 0; i < results.length; i++) {
+			
+			if(results[i] == 0) {
+				draw = false;
+				break;
+			}
+			
+		}
+		
+		
+		
+		
+		return draw;
+	}
 	
-	public static boolean winner(){
+	
+	
+	public static boolean winner(int[] results){
 		
-
-		
-		
-		if ((results[0] == results[1] && results[0]== results[2]) ||
+			
+		if ((results[0] == results[1] && results[0]== results[2] && results[0] !=0) ||
 		(results[0] == results[3] && results[0] == results[6] && results[0] != 0) ||
 		(results[0] == results[4] && results[0] == results[8] && results[0] != 0) ||
 		(results[1] == results[4] && results[1] == results[7] && results[1] != 0) ||
@@ -129,8 +149,10 @@ public class Game {
 	
 	private void initialize() {
 		
+		int[] results = new int[9];
+		
 		frame = new JFrame("Tic-Tac-Toe");
-		frame.setBounds(100, 100, 900, 300);
+		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
@@ -153,6 +175,14 @@ public class Game {
 					client1 = false;
 					results[0] = 1;
 			
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
+						System.out.println("Player 1 wins");
+						reset();
+					}
 					
 				} else if((one == false) && client1 != true) {
 					
@@ -161,14 +191,18 @@ public class Game {
 					client1 = true;
 					results[0] = 2;
 					
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
+						System.out.println("Player 2 wins");
+						reset();
+					}
+					
 			
 				}
 				
-				if(winner() == true && client1 == true) {
-					System.out.println("Player 1 wins");
-				}else if (winner() == true && client1 == false){
-					System.out.println("Player 2 wins");
-				}
 				
 			}
 		});
@@ -187,7 +221,11 @@ public class Game {
 					client1 = false;
 					results[1] = 1;
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
 						reset();
 					}
@@ -200,7 +238,11 @@ public class Game {
 					client1 = true;
 					results[1] = 2;
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
 						reset();
 					}
@@ -224,7 +266,11 @@ public class Game {
 					client1 = false;
 					results[2] = 1;
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
 						reset();
 					}
@@ -235,7 +281,11 @@ public class Game {
 					client1 = true;
 					results[2] = 2;
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
 						reset();
 					}
@@ -259,10 +309,13 @@ public class Game {
 						client1 = false;
 						results[3] = 1;
 						
-						if(winner() == true) {
+						if(draw(results) == true) {
+							System.out.println("Tie");
+							reset();
+						}
+						else if(winner(results) == true) {
 							System.out.println("Player 1 wins");
 							reset();
-							
 						}
 						
 						
@@ -273,7 +326,11 @@ public class Game {
 						client1 = true;
 						results[3] = 2;
 						
-						if(winner() == true) {
+						if(draw(results) == true) {
+							System.out.println("Tie");
+							reset();
+						}
+						else if(winner(results) == true) {
 							System.out.println("Player 2 wins");
 							reset();
 						}
@@ -296,7 +353,11 @@ public class Game {
 					results[4] = 1;
 					
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
 						reset();
 					}
@@ -309,8 +370,11 @@ public class Game {
 					client1 = true;
 					results[4] = 2;
 					
-					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
 						reset();
 					}
@@ -335,7 +399,11 @@ public class Game {
 					client1 = false;
 					results[5] = 1;
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
 						reset();
 					}
@@ -349,7 +417,11 @@ public class Game {
 					results[5] = 2;
 					
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
 						reset();
 					}
@@ -374,7 +446,11 @@ public class Game {
 					client1 = false;
 					results[6] = 1;
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
 						reset();
 					}
@@ -385,7 +461,11 @@ public class Game {
 					client1 = true;
 					results[6] = 2;
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
 						reset();
 					}
@@ -410,7 +490,11 @@ public class Game {
 					client1 = false;
 					results[7] = 1;
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
 						reset();
 					}
@@ -422,7 +506,11 @@ public class Game {
 					client1 = true;
 					results[7] = 2;
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
 						reset();
 					}
@@ -435,10 +523,7 @@ public class Game {
 		Button9 = new JButton("");
 		Button9.setBounds(290, 171, 127, 75);
 		panel.add(Button9);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(492, 24, 322, 222);
-		panel.add(textArea);
+
 		
 		
 		Button9.addActionListener(new ActionListener() {
@@ -450,20 +535,27 @@ public class Game {
 					client1 = false;
 					results[8] = 1;
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
 						reset();
-						
 					}
 					
 				} else if((nine == false) && client1 != true) {
 					
-					five = true;
+					nine = true;
 					Button9.setText("O");
 					client1 = true;
 					results[8] = 2;
 					
-					if(winner() == true) {
+					if(draw(results) == true) {
+						System.out.println("Tie");
+						reset();
+					}
+					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
 						reset();
 					}
@@ -477,6 +569,12 @@ public class Game {
 		
 		
 	}
+	
+
 
 	
 }
+
+
+
+
