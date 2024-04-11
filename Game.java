@@ -34,15 +34,6 @@ public class Game {
 	boolean client1 = true;
 	
 	 //spaces on tic tac toe board
-	static boolean one = false;
-	static boolean two = false;
-	static boolean three = false;
-	static boolean four = false;
-	static boolean five = false;
-	static boolean six = false;
-	static boolean seven = false;
-	static boolean eight = false;
-	static boolean nine = false;
 
 	
 	
@@ -106,22 +97,12 @@ public class Game {
 	
 	
 	
-	public static void reset() {
+	public static void reset(int [] results) {
 		
 		for(int i = 0; i < results.length; i++) {
 			results[i] = 0;
 		}
 		
-		
-		one = false;
-		two = false;
-		three = false;
-		four = false;
-		five = false;
-		six = false;
-		seven = false;
-		eight = false;
-		nine = false;
 
 		
 		Button1.setText("");
@@ -133,6 +114,8 @@ public class Game {
 		Button7.setText("");
 		Button8.setText("");
 		Button9.setText("");
+		
+	
 	}
 	
 		
@@ -148,6 +131,8 @@ public class Game {
 	
 	
 	private void initialize() {
+
+
 		
 		int[] results = new int[9];
 		
@@ -169,35 +154,33 @@ public class Game {
 		Button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if((one == false) && client1 == true) {
-					one = true;
+				if((results[0] == 0) && client1 == true) {
 					Button1.setText("X");
 					client1 = false;
 					results[0] = 1;
 			
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
-						reset();
+						reset(results);
 					}
 					
-				} else if((one == false) && client1 != true) {
+				} else if((results[0] == 0) && client1 != true) {
 					
-					one = true;
 					Button1.setText("O");
 					client1 = true;
 					results[0] = 2;
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
-						reset();
+						reset(results);
 					}
 					
 			
@@ -215,36 +198,40 @@ public class Game {
 		Button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if((two == false) && client1 == true) {
-					two = true;
+				if((results[1] == 0) && client1 == true) {
+					
 					Button2.setText("X");
 					client1 = false;
 					results[1] = 1;
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					
 					
-				} else if((two == false) && client1 != true) {
+				} else if((results[1] == 0) && client1 != true) {
 					
-					two = true;
+				
 					Button2.setText("O");
 					client1 = true;
 					results[1] = 2;
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 				}
 				
@@ -260,34 +247,37 @@ public class Game {
 		
 		Button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if((three == false) && client1 == true) {
-					three = true;
+				if(results[2] == 0 && client1 == true) {
 					Button3.setText("X");
 					client1 = false;
 					results[2] = 1;
+				
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
-				} else if((three == false) && client1 != true) {
-					
-					three = true;
+				} else if(results[2] == 0 && client1 != true) {
+		
 					Button3.setText("O");
 					client1 = true;
 					results[2] = 2;
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 				}
 				
@@ -303,36 +293,38 @@ public class Game {
 		Button4.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
-					if((four == false) && client1 == true) {
-						four = true;
+					if(results[3] == 0 && client1 == true) {
 						Button4.setText("X");
 						client1 = false;
 						results[3] = 1;
 						
 						if(draw(results) == true) {
 							System.out.println("Tie");
-							reset();
+							reset(results);
+							client1 = true;
 						}
 						else if(winner(results) == true) {
 							System.out.println("Player 1 wins");
-							reset();
+							reset(results);
+							client1 = true;
 						}
 						
 						
-					} else if((four == false) && client1 != true) {
-						
-						four = true;
+					} else if((results[3] == 0) && client1 != true) {
+				
 						Button4.setText("O");
 						client1 = true;
 						results[3] = 2;
 						
 						if(draw(results) == true) {
 							System.out.println("Tie");
-							reset();
+							reset(results);
+							client1 = true;
 						}
 						else if(winner(results) == true) {
 							System.out.println("Player 2 wins");
-							reset();
+							reset(results);
+							client1 = true;
 						}
 					}
 					
@@ -346,8 +338,7 @@ public class Game {
 		Button5.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if((five == false) && client1 == true) {
-					five = true;
+				if((results[4] == 0) && client1 == true) {
 					Button5.setText("X");
 					client1 = false;
 					results[4] = 1;
@@ -355,28 +346,31 @@ public class Game {
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					
 					
-				} else if((five == false) && client1 != true) {
-					
-					five = true;
+				} else if((results[4] == 0) && client1 != true) {
+				
 					Button5.setText("O");
 					client1 = true;
 					results[4] = 2;
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					
 					
@@ -393,25 +387,25 @@ public class Game {
 		Button6.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if((six == false) && client1 == true) {
-					six = true;
+				if(results[5] == 0 && client1 == true) {
 					Button6.setText("X");
 					client1 = false;
 					results[5] = 1;
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					
 					
-				} else if((six == false) && client1 != true) {
-					
-					six = true;
+				} else if((results[5] == 0) && client1 != true) {
+				
 					Button6.setText("O");
 					client1 = true;
 					results[5] = 2;
@@ -419,11 +413,13 @@ public class Game {
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 				}
 				
@@ -440,34 +436,37 @@ public class Game {
 		Button7.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if((seven == false) && client1 == true) {
-					seven= true;
+				if((results[6] == 0) && client1 == true) {
+
 					Button7.setText("X");
 					client1 = false;
 					results[6] = 1;
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
-				} else if((seven == false) && client1 != true) {
+				} else if((results[6] == 0) && client1 != true) {
 					
-					seven = true;
 					Button7.setText("O");
 					client1 = true;
 					results[6] = 2;
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 				}
 				
@@ -484,35 +483,38 @@ public class Game {
 		Button8.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if((eight == false) && client1 == true) {
-					eight = true;
+				if((results[7] == 0) && client1 == true) {
 					Button8.setText("X");
 					client1 = false;
 					results[7] = 1;
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					
-				} else if((eight == false) && client1 != true) {
+				} else if((results[7] == 0) && client1 != true) {
 					
-					eight = true;
+				
 					Button8.setText("O");
 					client1 = true;
 					results[7] = 2;
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 				}
 				
@@ -529,35 +531,38 @@ public class Game {
 		Button9.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				if((nine == false) && client1 == true) {
-					nine = true;
+				if((results[8] == 0) && client1 == true) {
+			
 					Button9.setText("X");
 					client1 = false;
 					results[8] = 1;
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 1 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					
-				} else if((nine == false) && client1 != true) {
-					
-					nine = true;
+				} else if((results[8] == 0) && client1 != true) {
+				
 					Button9.setText("O");
 					client1 = true;
 					results[8] = 2;
 					
 					if(draw(results) == true) {
 						System.out.println("Tie");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 					else if(winner(results) == true) {
 						System.out.println("Player 2 wins");
-						reset();
+						reset(results);
+						client1 = true;
 					}
 				}
 				
