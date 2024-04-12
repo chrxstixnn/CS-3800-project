@@ -68,10 +68,6 @@ public class Game {
 			}
 			
 		}
-		
-		
-		
-		
 		return draw;
 	}
 	

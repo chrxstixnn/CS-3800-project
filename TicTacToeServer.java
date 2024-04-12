@@ -54,6 +54,12 @@ class Game {
         return Arrays.stream(board).allMatch(p -> p != null);
     }
 
+    public void reset() {
+        for(int i = 0; i < 9; i++) {
+            board[i] = null;
+        }
+    }
+
     public synchronized void move(int location, Player player) {
         if (player != currentPlayer) {
             throw new IllegalStateException("Not your turn");
@@ -77,6 +83,7 @@ class Game {
         Socket socket;
         Scanner input;
         PrintWriter output;
+        boolean choice = true;
 
         public Player(Socket socket, char mark) {
             this.socket = socket;
@@ -86,8 +93,8 @@ class Game {
         @Override
         public void run() {
             try {
-                setup();
-                processCommands();
+                    setup();
+                    processCommands();
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -99,6 +106,10 @@ class Game {
                 } catch (IOException e) {
                 }
             }
+        }
+
+        public boolean getChoice() {
+            return choice;
         }
 
         private void setup() throws IOException {
@@ -118,6 +129,9 @@ class Game {
         private void processCommands() {
             while (input.hasNextLine()) {
                 var command = input.nextLine();
+                if(command.startsWith("Restart")) {
+                    reset();
+                }
                 if (command.startsWith("QUIT")) {
                     return;
                 } else if (command.startsWith("MOVE")) {
@@ -138,6 +152,7 @@ class Game {
                     output.println("TIE");
                     opponent.output.println("TIE");
                 }
+
             } catch (IllegalStateException e) {
                 output.println("MESSAGE " + e.getMessage());
             }

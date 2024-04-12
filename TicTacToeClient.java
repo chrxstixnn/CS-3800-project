@@ -6,9 +6,6 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Scanner;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -91,7 +88,6 @@ public class TicTacToeClient {
                 if (response.startsWith("VALID_MOVE")) {
                     messageLabel.setText("Valid move, please wait");
                     currentButton.setText(mark+"");
-                    
                 } else if (response.startsWith("OPPONENT_MOVED")) {
                     var loc = Integer.parseInt(response.substring(15));
                     buttons[loc].setText(opponentMark+"");
@@ -99,13 +95,45 @@ public class TicTacToeClient {
                 } else if (response.startsWith("MESSAGE")) {
                     messageLabel.setText(response.substring(8));
                 } else if (response.startsWith("VICTORY")) {
-                    JOptionPane.showMessageDialog(frame, "Winner Winner");
+                    JOptionPane.showMessageDialog(frame, "Congratulations, You won");
+                    int choice = JOptionPane.showConfirmDialog(null, "Would you like to rematch?", "Restart", JOptionPane.YES_NO_OPTION);
+                    if(choice == JOptionPane.YES_OPTION) {
+                        for(int i =0; i < 9; i++) {
+                            buttons[i].setText("");
+                        }
+                        response = "VALID_MOVE";
+                        out.println("Restart");
+                        continue;
+                    }
                     break;
                 } else if (response.startsWith("DEFEAT")) {
-                    JOptionPane.showMessageDialog(frame, "Sorry you lost");
+                    JOptionPane.showMessageDialog(frame, "Sorry, You lost");
+                    int choice = JOptionPane.showConfirmDialog(null, "Would you like to rematch?", "Restart", JOptionPane.YES_NO_OPTION);
+                    if(choice == JOptionPane.YES_OPTION) {
+                        for(int i =0; i < 9; i++) {
+                            buttons[i].setText("");
+                        }
+                        response = "OPPONENT_MOVED";
+                        out.println("Restart");
+                        continue;
+                    }
                     break;
                 } else if (response.startsWith("TIE")) {
                     JOptionPane.showMessageDialog(frame, "Tie");
+                    int choice = JOptionPane.showConfirmDialog(null, "Would you like to rematch?", "Restart", JOptionPane.YES_NO_OPTION);
+                    if(choice == JOptionPane.YES_OPTION) {
+                        for(int i =0; i < 9; i++) {
+                            buttons[i].setText("");
+                        }
+                        if(mark == 'X') {
+                            response = "OPPONENT_MOVED";
+                        }
+                        else {
+                            response = "VALID_MOVE";
+                        }
+                        out.println("Restart");
+                        continue;
+                    }
                     break;
                 } else if (response.startsWith("OTHER_PLAYER_LEFT")) {
                     JOptionPane.showMessageDialog(frame, "Other player left");
